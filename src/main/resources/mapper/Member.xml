@@ -1,0 +1,129 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.playground.common.dao.MemberDao">
+
+	<select id="list" parameterType="Member" resultType="Member">
+		/** com.playground.common.dao.MemberDao.list  */
+		SELECT 	memberid, 
+				member_name, 
+				mobile1, 
+				mobile2, 
+				email, 
+				email_domain, 
+				email_auth, 
+				passwd, 
+				member_type, 
+				last_login, 
+				refund_banknm, 
+				refund_account, 
+				refund_name, 
+				reg_id, 
+				reg_date, 
+				upt_id, 
+				upt_date
+			FROM T_USER 
+	</select>
+	
+	
+	<select id="view" parameterType="Member" resultType="Member" >
+		/** com.playground.common.dao.MemberDao.view  */
+		SELECT 	memberid, 
+				member_name, 
+				mobile1, 
+				mobile2, 
+				email, 
+				email_domain, 
+				email_auth, 
+				passwd, 
+				member_type, 
+				last_login, 
+				refund_banknm, 
+				refund_account, 
+				refund_name, 
+				reg_id, 
+				reg_date, 
+				upt_id, 
+				upt_date
+			FROM T_USER 
+		 WHERE memberid = #{memberid}
+	</select>
+
+	<select id="count"  parameterType="Member" resultType="Integer" >
+		/** com.playground.common.dao.MemberDao.count  */
+		SELECT 	COUNT(1) CNT
+			FROM T_USER 
+		 WHERE memberid = #{memberid}
+	</select>
+
+
+	<insert id="insert"  parameterType="Member">
+		/** com.playground.common.dao.MemberDao.insert  */
+		INSERT INTO T_USER 
+		(
+			memberid, 
+			member_name, 
+			mobile1, 
+			mobile2, 
+			email, 
+			email_domain, 
+			email_auth, 
+			passwd, 
+			member_type, 
+			last_login, 
+			refund_banknm, 
+			refund_account, 
+			refund_name, 
+			reg_id, 
+			reg_date
+		)
+		VALUES
+		(
+			#{memberid} 
+			#{memberName} 
+			#{mobile1} 
+			#{mobile2} 
+			#{email} 
+			#{emailDomain} 
+			#{emailAuth} 
+			#{passwd} 
+			#{memberType} 
+			#{lastLogin} 
+			#{refundBanknm} 
+			#{refundAccount} 
+			#{refundName} 
+			#{regId} 
+			NOW()
+		)
+	</insert>
+
+
+	<delete id="delete"  parameterType="Member">
+		/** com.playground.common.dao.MemberDao.delete  */
+		DELETE FROM T_USER
+		WHERE memberid = #{memberid}
+	</delete>
+	
+	
+	<update id="update" parameterType="Member" >
+		/** com.playground.common.dao.MemberDao.update  */
+		UPDATE T_USER
+		   SET UPT_DT = NOW()
+		     , UPT_ID = #{uptId}
+		     
+		     <if test="memberName != null and memberName != ''">, member_name = #{memberName}</if>
+		     <if test="mobile1 != null and mobile1 != ''">, mobile1 = #{mobile1}</if>
+		     <if test="mobile2 != null and mobile2 != ''">, mobile2 = #{mobile2}</if>
+		     <if test="email != null and email != ''">, email = #{email} </if>
+		     <if test="emailDomain != null and emailDomain != ''">, email_domain = #{emailDomain} </if>
+		     <if test="emailAuth != null and emailAuth != ''">, email_auth = #{emailAuth} </if>
+		     <if test="passwd != null and passwd != ''">, passwd = #{passwd}</if>
+		     <if test="memberType != null and memberType != ''">, member_type = #{memberType}</if>
+		     <if test="lastLogin != null and lastLogin != ''">, last_login = NOW()</if>
+		     <if test="refundBanknm != null and refundBanknm != ''">, refund_banknm = #{refundBanknm} </if>
+		     <if test="refundAccount != null and refundAccount != ''">, refund_account = #{refundAccount} </if>
+		     <if test="refundName != null and refundName != ''">, refund_name = #{refundName} </if>
+		      
+		WHERE memberid = #{memberid}
+	</update>
+	
+</mapper>
