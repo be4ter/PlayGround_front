@@ -1,17 +1,25 @@
 package com.playground.common.dao;
 
-import java.util.List;
-
+import com.playground.common.dto.Member;
 import org.apache.ibatis.annotations.Mapper;
 
-import com.playground.common.dto.Member;
+import java.util.List;
 
 @Mapper
 public interface MemberDao {
-	public List<Member> list(Member memberDto);
-	public Member view(Member memberDto);
-	public void insert(Member memberDto);
-	public int update(Member memberDto);
-	public int delete(Member memberDto);
-	public int count(Member memberDto);
+    List<Member> list(Member memberDto);
+
+    Member view(Member memberDto);
+
+    void insert(Member memberDto);
+
+    int update(Member memberDto);
+
+    int delete(Member memberDto);
+
+    int count(Member memberDto);
+
+    Member findByEmail(String memberid);
+
+    void authMember(Member member);
 }
