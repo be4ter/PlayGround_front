@@ -6,14 +6,11 @@ import com.playground.service.MemberService;
 import org.apache.juli.logging.Log;
 import org.apache.juli.logging.LogFactory;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.bind.annotation.*;
 
 import javax.servlet.http.HttpSession;
 
-@Controller
+@RestController
 @RequestMapping("/login")
 public class LoginController {
     private Log log = LogFactory.getLog(this.getClass());
@@ -37,5 +34,31 @@ public class LoginController {
         }
         httpSession.setAttribute("loginedUser", member);
         return member;
+    }
+
+    @GetMapping("/{memberid}")
+    public String loginCheck(@PathVariable String memberid, HttpSession session) {
+        Member member = memberService.findByMemberid(memberid);
+        Member loginedMember = (Member) session.getAttribute("loginedUser");
+        if (member == null) {
+            return "사용자가 존재하지 않습니다.";
+        }
+        if (loginedMember == null) {
+            return "로그인 한 멤버가 아닙니다.";
+        }
+        if (!member.equals(loginedMember)) {
+            return "멤버 객체가 일치 하지 않습니다.";
+        }
+        return "success";
+    }
+
+    @DeleteMapping()
+    public String logout(HttpSession session) {
+        Member loginedMember = (Member) session.getAttribute("loginedUser");
+        if (loginedMember == null) {
+            return "로그인 한 멤버가 아닙니다.";
+        }
+        session.removeAttribute("loginedUser");
+        return "success";
     }
 }

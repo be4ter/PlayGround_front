@@ -22,4 +22,6 @@ public interface MemberDao {
     Member findByEmail(String memberid);
 
     void authMember(Member member);
+
+    Member findByMemberId(String memberid);
 }

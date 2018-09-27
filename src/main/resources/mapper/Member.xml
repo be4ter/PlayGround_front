@@ -131,7 +131,6 @@
 
 
     <select id="findByEmail" parameterType="String" resultType="Member">
-		/** com.playground.common.dao.MemberDao.view  */
 		SELECT 	memberid,
 				member_name,
 				mobile1,
@@ -155,10 +154,33 @@
     </select>
 
     <update id="authMember" parameterType="Member">
-		/** com.playground.common.dao.MemberDao.update */
+		/** com.playground.common.dao.MemberDao.authMember */
 		UPDATE T_USER
 		SET email_auth = "true"
 
 		WHERE memberid = #{memberid}
 	</update>
+
+    <select id="findByMemberId" parameterType="String" resultType="Member">
+		SELECT 	memberid,
+				member_name,
+				mobile1,
+				mobile2,
+				email,
+				email_domain,
+				email_auth,
+				auth_code,
+				passwd,
+				member_type,
+				last_login,
+				refund_banknm,
+				refund_account,
+				refund_name,
+				reg_id,
+				reg_date,
+				upt_id,
+				upt_date
+			FROM T_USER
+		 WHERE memberid = #{memberid}
+	</select>
 </mapper>

@@ -4,14 +4,16 @@
         "http://mybatis.org/dtd/mybatis-3-config.dtd">
 <configuration>
     <settings>
-        <setting name="defaultExecutorType" value="REUSE" />
-        <setting name="defaultStatementTimeout" value="20000" />
-        <setting name="mapUnderscoreToCamelCase" value="true" />
-        
+        <setting name="defaultExecutorType" value="REUSE"/>
+        <setting name="defaultStatementTimeout" value="20000"/>
+        <setting name="mapUnderscoreToCamelCase" value="true"/>
+
     </settings>
-    
+
     <typeAliases>
-		<typeAlias alias="Member" type="com.playground.common.dto.Member" />
-	</typeAliases>
-    
+        <typeAlias alias="Member" type="com.playground.common.dto.Member"/>
+        <typeAlias alias="Edu" type="com.playground.common.dto.Edu"/>
+
+    </typeAliases>
+
 </configuration>

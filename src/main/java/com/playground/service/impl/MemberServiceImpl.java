@@ -36,4 +36,14 @@ public class MemberServiceImpl implements MemberService {
         memberDao.authMember(member);
     }
 
+    @Override
+    public Member findByMemberid(String memberid) {
+        return memberDao.findByMemberId(memberid);
+    }
+
+    @Override
+    public void delete(Member member) {
+        memberDao.delete(member);
+    }
+
 }

@@ -3,6 +3,7 @@ package com.playground.common.dto;
 import com.playground.common.dto.upper.AbstractDto;
 
 import java.time.LocalDateTime;
+import java.util.Objects;
 import java.util.Random;
 
 public class Member extends AbstractDto {
@@ -164,6 +165,32 @@ public class Member extends AbstractDto {
             return true;
         }
         return false;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        Member member = (Member) o;
+        return Objects.equals(memberid, member.memberid) &&
+                Objects.equals(memberName, member.memberName) &&
+                Objects.equals(mobile1, member.mobile1) &&
+                Objects.equals(mobile2, member.mobile2) &&
+                Objects.equals(email, member.email) &&
+                Objects.equals(emailDomain, member.emailDomain) &&
+                Objects.equals(emailAuth, member.emailAuth) &&
+                Objects.equals(passwd, member.passwd) &&
+                Objects.equals(memberType, member.memberType) &&
+                Objects.equals(lastLogin, member.lastLogin) &&
+                Objects.equals(refundBanknm, member.refundBanknm) &&
+                Objects.equals(refundAccount, member.refundAccount) &&
+                Objects.equals(refundName, member.refundName) &&
+                Objects.equals(authCode, member.authCode);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(memberid, memberName, mobile1, mobile2, email, emailDomain, emailAuth, passwd, memberType, lastLogin, refundBanknm, refundAccount, refundName, authCode);
     }
 
     @Override

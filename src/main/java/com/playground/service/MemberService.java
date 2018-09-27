@@ -12,4 +12,8 @@ public interface MemberService {
     Member findByEmail(String email);
 
     void authMember(Member member);
+
+    Member findByMemberid(String memberid);
+
+    void delete(Member member);
 }

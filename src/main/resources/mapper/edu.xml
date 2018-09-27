@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.playground.common.dao.EduDao">
+    <insert id="insert" parameterType="Edu">
+        INSERT INTO T_EDU (
+            edu_code,
+            SEA_CODE,
+            edu_name,
+            descript,
+            teacher_nm,
+            level,
+            contents,
+            recruit_sdt,
+            recruit_edt,
+            edu_sdt,
+            edu_edt,
+            edu_time,
+            place,
+            edu_state,
+            edu_capacity,
+            reg_id,
+            reg_date,
+            upt_id,
+            upt_date
+        )
+        VALUES (
+            #{eduCode},
+            #{seasonCode},
+            #{eduName},
+            #{descript},
+            #{teacherName},
+            #{eduLevel},
+            #{eduContents},
+            #{recruitStartDate},
+            #{recruitEndDate},
+            #{eduStartDate},
+            #{eduEndDate},
+            #{eduTime},
+            #{eduPlace},
+            #{eduState},
+            #{eduCapaity},
+            #{regId},
+            #{regDt},
+            #{uptId},
+            #{uptDt}
+        )
+    </insert>
+
+</mapper>
